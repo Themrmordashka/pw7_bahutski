@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+    <title>Calculator Form</title>
+    <style>
+
+        .owl-carousel .item {
+            background: #fff;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .owl-carousel .item p {
+            margin-top: 20px;
+        }
+
+        form {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input, select {
+            margin-bottom: 10px;
+            padding: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="reset"] {
+            background-color: #dc3545;
+            margin-left: 10px;
+        }
+        output {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function calculate(num1, operator, num2) {
+            switch(operator) {
+                case '+':
+                    return num1 + num2;
+                case '-':
+                    return num1 - num2;
+                case '*':
+                    return num1 * num2;
+                case '/':
+                    if(num2 != 0) {
+                        return num1 / num2;
+                    } else {
+                        return "Error: Division by zero is not allowed.";
+                    }
+                default:
+                    return "Error: Invalid operator.";
+            }
+        }
+
+        function performCalculation() {
+            var num1 = parseFloat(document.getElementById('num1').value);
+            var operator = document.getElementById('operator').value;
+            var num2 = parseFloat(document.getElementById('num2').value);
+            var result = calculate(num1, operator, num2);
+            document.getElementById('result').textContent = "The result is: " + result;
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".owl-carousel").owlCarousel({
+                items: 1,
+                loop: true,
+                nav: true,
+                navText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>'],
+                dots: true,
+                autoplay: true,
+                autoplayHoverPause: true,
+                autoplayTimeout: 5000,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    768: {
+                        items: 2
+                    },
+                    992: {
+                        items: 3
+                    }
+                }
+            });
+        });
+    </script>
+    
+</head>
+<body>
+    <form>
+        <label for="num1">First Number:</label>
+        <input type="number" id="num1" value="0">
+        <label for="operator">Operator:</label>
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <label for="num2">Second Number:</label>
+        <input type="number" id="num2" value="0">
+        <button type="button" onclick="performCalculation()">Calculate</button>
+        <button type="reset">Reset</button>
+        <output id="result"></output>
+    </form>
+
+    <div class="owl-carousel">
+        <!-- Slide 1 -->
+        <div class="item">
+            <h2>Explain "repaint" and "reflow" of the webpage.</h2>
+            <p>Repaint: When changes in CSS styles are applied to an element that do not affect its layout, only the affected part of the webpage is repainted without changing the layout of other elements. Reflow: When changes in CSS styles or DOM structure occur that affect the layout of the webpage, causing elements to be repositioned or resized, a reflow is triggered, which is more costly in terms of performance.</p>
+        </div>
+        <!-- Slide 2 -->
+        <div class="item">
+            <h2>How does JavaScript on the webpage affects the page load speed and performance?</h2>
+            <p>JavaScript execution can block rendering and make the page load slower. Poorly optimized JavaScript code can also lead to higher CPU and memory usage, affecting page performance negatively. However, using JavaScript to enhance user experience through features like lazy loading, asynchronous loading, and caching can improve overall performance.</p>
+        </div>
+        <!-- Slide 3 -->
+        <div class="item">
+            <h2>What is "minification" of the script? Why it is useful to minify your scripts?</h2>
+            <p>Minification is the process of removing unnecessary characters from code, such as whitespace, comments, and line breaks, to reduce its size. Minifying scripts helps improve page load times by reducing file size, as smaller files can be downloaded faster by the browser. It also reduces bandwidth usage and improves website performance.</p>
+        </div>
+        <!-- Slide 4 -->
+        <div class="item">
+            <h2>What is a JS Web Worker and when do we need it?</h2>
+            <p>A JavaScript Web Worker is a separate thread that runs concurrently with the main JavaScript thread, allowing for parallel execution of code. Web Workers are useful for tasks that require intensive computation or long-running operations, such as data processing, image manipulation, and background tasks, without blocking the main UI thread, thus improving responsiveness and performance of web applications.</p>
+        </div>
+        <!-- Slide 5: Sources -->
+        <div class="item">
+            <h2>Sources</h2>
+            <ul>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetWidth">MDN Web Docs: offsetWidth</a></li>
+                <li><a href="https://css-tricks.com/almanac/properties/o/offsetwidth/">CSS Tricks: offsetWidth</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+</body>
+</html>
